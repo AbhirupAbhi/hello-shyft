@@ -5,6 +5,7 @@ import ListAll from "./ListAll";
 import GetDetails from "./GetDetails";
 import CustomLogin from "./CustomLogin";
 import SamplePage from "./SamplePage";
+import Create from "./Create";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/get-details" element={<GetDetails />} />
           <Route exact path="/nft-login" element={<CustomLogin />} />
           <Route exact path="/sample-page" element={<SamplePage />} />
+          <Route exact path="/create-new" element={<Create />} />
         </Routes>
       </Router>
     </div>
