@@ -3,6 +3,8 @@ import {  BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './resources/css/custom.css';
 import ListAll from "./ListAll";
 import GetDetails from "./GetDetails";
+import CustomLogin from "./CustomLogin";
+import SamplePage from "./SamplePage";
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<ListAll />} />
           <Route exact path="/get-details" element={<GetDetails />} />
+          <Route exact path="/nft-login" element={<CustomLogin />} />
+          <Route exact path="/sample-page" element={<SamplePage />} />
         </Routes>
       </Router>
     </div>
