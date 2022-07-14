@@ -6,6 +6,7 @@ import GetDetails from "./GetDetails";
 import CustomLogin from "./CustomLogin";
 import SamplePage from "./SamplePage";
 import Create from "./Create";
+import CheckNft from "./CheckNft";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/nft-login" element={<CustomLogin />} />
           <Route exact path="/sample-page" element={<SamplePage />} />
           <Route exact path="/create-new" element={<Create />} />
+          <Route exact path="/check" element={<CheckNft />} />
         </Routes>
       </Router>
     </div>

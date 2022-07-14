@@ -6,7 +6,7 @@ const CheckNft = () => {
   const [token, setToken] = useState();
   const [xApi, setXApi] = useState();
 
-  const [loaded, setLoaded] = useState();
+  const [loaded, setLoaded] = useState(false);
   const [returns, setReturns] = useState({
     success: true,
     message: "NFT Data",
@@ -27,6 +27,7 @@ const CheckNft = () => {
 
   const checkNow = (e) => {
     e.preventDefault();
+    setLoaded(false);
     let nftUrl = `https://api.shyft.to/sol/v1/nft/read?network=${network}&token_address=${token}`;
     axios({
       // Endpoint to send files
@@ -42,6 +43,7 @@ const CheckNft = () => {
       .then((res) => {
         console.log(res.data);
         setReturns(res.data);
+        setLoaded(true);
       })
       // Catch errors if any
       .catch((err) => {
@@ -73,7 +75,7 @@ const CheckNft = () => {
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Enter Mint Address"
+              placeholder="Enter X-api-key"
               value={xApi}
               onChange={(e) => setXApi(e.target.value)}
             />
@@ -83,36 +85,64 @@ const CheckNft = () => {
           </form>
         </div>
       </div>
-      <div className="container p-5">
-        <table className="table">
-          <tr>
-            <td>Name</td>
-            <td>{returns.result.name}</td>
-          </tr>
-          <tr>
-            <td>Description</td>
-            <td>{returns.result.description}</td>
-          </tr>
-          <tr>
-            <td>Symbol</td>
-            <td>{returns.result.symbol}</td>
-          </tr>
-          <tr>
-            <td>Royalty</td>
-            <td>{returns.result.royalty}</td>
-          </tr>
-        </table>
-      </div>
-      <div className="container p-5">
-        <div className="row p-3 mt-3 bg-info">
-          <div className="col">Mint Address</div>
-          <div className="col">{returns.result.mint}</div>
+      {!loaded && (<h3 className="text-center">Enter Data to Check</h3>)}
+      {loaded && (<div>
+        <div className="container p-5">
+          <div
+            className="img-cont"
+            style={{
+              width: "200px",
+              height: "200px",
+              margin: "30px auto",
+              backgroundColor: "#fefefe",
+              backgroundImage: `url(${returns.result.image_uri})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              border: "2px solid purple",
+            }}
+          ></div>
+          <table className="table">
+            <tbody>
+              <tr>
+                <td className="py-3 px-1">Name</td>
+                <td className="py-3 px-1">{returns.result.name}</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-1">Description</td>
+                <td className="py-3 px-1">{returns.result.description}</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-1">Symbol</td>
+                <td className="py-3 px-1">{returns.result.symbol}</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-1">Royalty</td>
+                <td className="py-3 px-1">{returns.result.royalty}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="row p-3 mt-3 bg-danger">
-          <div className="col">Owner Address</div>
-          <div className="col">{returns.result.owner}</div>
+        <div className="container py-5">
+          Attributes:
+          <div className="d-flex">
+            {JSON.stringify(returns.result.attributes)}
+          </div>
         </div>
-      </div>
+        <div className="container p-5">
+          <div className="row p-3 mt-3 bg-warning">
+            <div className="col">Mint Address</div>
+            <div className="col text-end">
+              <b>{returns.result.mint}</b>
+            </div>
+          </div>
+          <div className="row p-3 mt-3 bg-danger text-light rounded">
+            <div className="col">Owner Address</div>
+            <div className="col text-end">
+              <b>{returns.result.owner}</b>
+            </div>
+          </div>
+        </div>
+      </div>)}
     </div>
   );
 };
