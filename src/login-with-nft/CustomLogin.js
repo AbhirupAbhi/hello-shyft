@@ -51,13 +51,24 @@ const CustomLogin = () => {
                       // Handle the response from backend here
                       .then((res) => {
                         console.log(res.data);
-                        res.data.result.map((item) => {
-                            if(item.name === 'Mountain')
-                            {
-                                setConnProg("Connected and authorized");
-                                navigate('/sample-page');
-                            }
-                        });
+                        try{
+                            res.data.result.map((item) => {
+                                if(item.name === 'Unlocker' && item.mint === 'DmJ77jRq1ZvEinmKAxBqWGQEPausUkjQkPgbnLQYn7KE' && item.attributes.passphrase === 'musicdragon')
+                                {
+                                    setConnProg("Connected and authorized");
+                                    navigate('/sample-page');
+                                }
+                                else
+                                {
+                                    setConnProg("Error Occured/Unauthorized"); 
+                                }
+                            });
+                        }
+                        catch
+                        {
+                            setConnProg("Error Occured/Unauthorized"); 
+                        }
+                        
                         // setDataFetched(res.data);
                         // setLoaded(true);
                       })

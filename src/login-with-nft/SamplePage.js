@@ -1,6 +1,6 @@
-import preldr from './resources/ThemeResources/images/icons/preloader.gif'
-import './resources/ThemeResources/css/bootstrap.min.css';
-import './resources/ThemeResources/css/custom.css';
+import preldr from '../resources/ThemeResources/images/icons/preloader.gif'
+import '../resources/ThemeResources/css/bootstrap.min.css';
+import '../resources/ThemeResources/css/custom.css';
 const SamplePage = () => {
     return ( <div>
         {/* <div className="loader">

@@ -213,7 +213,7 @@ const Create = () => {
           <textarea
             className="form-control"
             name=""
-            value={dispResponse}
+            value={JSON.stringify(dispResponse)}
             id=""
             cols="30"
             rows="10"

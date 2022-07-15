@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import useReadAllApi from "./hello-shyft-collection/Read_All";
-import Navbar from "./Navbar";
-import ReadAllNFts from "./hello-shyft-collection/Read_All_func";
+// import Navbar from "./Navbar";
+
 
 const ListAll = () => {
   const [xKey, setXkey] = useState("");
@@ -44,7 +44,7 @@ const ListAll = () => {
   };
   return (
     <div>
-      <Navbar />
+      
       <div className="container-lg">
         <div className="py-4">
           <h1>List All Your NFTs</h1>
@@ -120,7 +120,7 @@ const ListAll = () => {
                 <div className="col-xs-12 col-sm-3 p-1">
                   <div className="card nft-card">
                     <div className="card-body">
-                      <a href={"/get-details?token_address=" + item.mint}>
+                      <a href={`/get-details?token_address=${item.mint}&apiKey=${xKey}`}>
                         <h5>{item.name}</h5>
                       </a>
                       <div className="row">
