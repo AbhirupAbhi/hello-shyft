@@ -130,7 +130,7 @@ const ListAll = () => {
               (e.target.value === 'mtmsk') ? mtmskConnect() : solanaConnect();
             }}>
               <option value="none">Connect</option>
-              <option value="mtmsk">Metamask</option>
+              {/* <option value="mtmsk">Metamask</option> */}
               <option value="phntm">Phantom</option>
             </select>
           </div>
