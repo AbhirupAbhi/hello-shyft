@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import { LAMPORTS_PER_SOL, clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 
 const Create = () => {
   const [file, setfile] = useState();
   const [displayPic, setDisplayPic] = useState();
   const [network, setnetwork] = useState("devnet");
   const [privKey, setprivKey] = useState();
-  const [xApiKey, setXAPI] = useState();
+  const [xApiKey, setXAPI] = useState('6YYVFYSK7PlguTsB');
   const [name, setName] = useState();
   const [symbol, setSymbol] = useState();
   const [desc, setDesc] = useState();
@@ -18,7 +20,64 @@ const Create = () => {
 
   const [status,setStatus] = useState("Awaiting Upload");
   const [dispResponse,setDispResp] = useState("");
+
+  const [connStatus, setConnStatus] = useState(true);
   
+  const mtmskConnect = async () => {
+    console.log('clicked meta mask');
+        const { ethereum } = window;
+    
+        if(!ethereum)
+        {
+            console.log("Please Install Meta Mask");
+        }
+    
+        try{
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            console.log("Found An account: "+accounts[0]);
+            //setCurrentAccount(accounts);
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+  }
+
+  const solanaConnect = async () => {
+    console.log('clicked solana connect');
+    const { solana } = window;
+        if(!solana)
+        {
+            alert("Please Install Solana");
+        }
+
+        try{  
+            //const network = "devnet";
+            const phantom = new PhantomWalletAdapter();
+            await phantom.connect();
+            const rpcUrl = clusterApiUrl(network);
+            const connection = new Connection(rpcUrl,"confirmed");
+            const wallet = {
+                address: phantom.publicKey.toString(),
+            };
+
+            if(wallet.address)
+            {
+                console.log(wallet.address);
+                // setwallID(wallet.address);
+                // ReactSession.set("userw", wallet.address);
+                const accountInfo = await connection.getAccountInfo(new PublicKey(wallet.address),"confirmed");
+                console.log(accountInfo);
+                //document.getElementById("clsBtn").click();  
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+
+  }
+
   const mintNow = (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -65,7 +124,22 @@ const Create = () => {
   return (
     <div>
       <div className="container p-5">
-        <div className="form-container border border-primary rounded py-3 px-5">
+      {!connStatus && (<div className="card border border-primary rounded py-3 px-5">
+          <div className="card-body text-center">
+            <h2 className="card-title p-2">Connect Your Wallet</h2>
+            <p className="card-text p-1">You need to connect your wallet to deploy and interact with your contracts.</p>
+            {/* <button class="btn btn-primary">Connect Wallet</button> */}
+            <select className="form-select" onChange={(e) => {
+              console.log(e.target.value);
+              (e.target.value === 'mtmsk') ? mtmskConnect() : solanaConnect();
+            }}>
+              <option value="none">Connect</option>
+              <option value="mtmsk">Metamask</option>
+              <option value="phntm">Phantom</option>
+            </select>
+          </div>
+        </div>)}
+        {connStatus && (<div className="form-container border border-primary rounded py-3 px-5">
           <h3>Create An Nft</h3>
           <p>
             This Sample Project Illustrates how to create new NFTs using SHYFT
@@ -100,12 +174,14 @@ const Create = () => {
               />
             </div>
             <div className="fields">
-              <table class="table">
+              <table className="table">
                 <tr>
                   <td>
                     <h5 className="py-4 text-danger">
-                      Network <span>(network: string)</span>
+                      Network <span>(network: string)</span><br></br>
+                      <small>Solana blockchain environment (testnet/devnet/mainnet-beta)</small>
                     </h5>
+
                   </td>
                   <td className="px-5">
                     <select
@@ -122,29 +198,25 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Private Key (private_key:string)
+                    Private Key (private_key:string)<br />
+                    <small>Your wallet's private key (string)</small>
                   </td>
                   <td className="px-5">
                     <input type="text" className="form-control" value={privKey} onChange={(e)=>setprivKey(e.target.value)} required />
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-4 ps-2 text-danger">
-                    X API Key (x-api-key:string)
+                  <td className="py-4 ps-2 text-danger">Name (name:string)<br />
+                  <small>Your NFT Name (string)</small>
                   </td>
-                  <td className="px-5">
-                    <input type="text" className="form-control" value={xApiKey} onChange={(e)=>setXAPI(e.target.value)} required />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-4 ps-2 text-danger">Name (name:string)</td>
                   <td className="px-5">
                     <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} required />
                   </td>
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Symbol (symbol:string)
+                    Symbol (symbol:string)<br />
+                    <small>Your NFT Symbol (string)</small>
                   </td>
                   <td className="px-5">
                     <input type="text" className="form-control" value={symbol} onChange={(e)=>setSymbol(e.target.value)} required />
@@ -152,7 +224,8 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Description (description:string)
+                    Description (description:string)<br />
+                    <small>Your NFT Symbol (string)</small>
                   </td>
                   <td className="px-5 py-3">
                     <textarea className="form-control" value={desc} onChange={(e)=>setDesc(e.target.value)} required></textarea>
@@ -160,7 +233,8 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Attributes (attributes:string)
+                    Attributes (attributes:string)<br />
+                    <small>attributes associated to this NFT. (Should have 'trait_type' and 'value')</small>
                   </td>
                   <td className="px-5 py-3">
                     <textarea className="form-control" value={attr} onChange={(e)=>setAttr(e.target.value)} required></textarea>
@@ -168,7 +242,8 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2">
-                    External Url (external_url:string)
+                    External Url (external_url:string)<br />
+                    <small>any url to associate with the NFT</small>
                   </td>
                   <td className="px-5">
                     <input type="text" className="form-control" value={extUrl} onChange={(e)=>setExtUrl(e.target.value)} required />
@@ -176,7 +251,8 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Max Supply (max_supply:number)
+                    Max Supply (max_supply:number)<br />
+                    <small>Maximum number of clones/edition mints possible for this NFT</small>
                   </td>
                   <td className="px-5">
                     <input type="number" className="form-control" value={maxSup} onChange={(e)=>setMaxSup(e.target.value)} required />
@@ -184,7 +260,11 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Royalty (royalty:number(0-100))
+                    Royalty (royalty:number(0-100))<br />
+                    <small>represents how much percentage of secondary<br/>
+                     sales does the original creator gets. Ranges from (0-100),<br/> 
+                    0 being original creator gets nothing and 100 being original<br/> 
+                    creator gets entire amount from secondary sales</small>
                   </td>
                   <td className="px-5">
                     <input type="number" className="form-control" value={roy} onChange={(e) => {
@@ -205,7 +285,7 @@ const Create = () => {
               </div>
             </div>
           </form>
-        </div>
+        </div>)}
         
         <div className="py-5">
           <h2 className="text-center pb-3">Response</h2>
