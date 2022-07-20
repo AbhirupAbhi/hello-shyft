@@ -7,7 +7,7 @@ import axios from "axios";
 const CustomLogin = () => {
     const navigate = useNavigate();
     const [wallID,setwallID] = useState("");
-    const [xApi,setXApi] = useState();
+    const [xApi,setXApi] = useState('6YYVFYSK7PlguTsB');
     const [network,setNetwork] = useState("devnet");
     const [connProg,setConnProg] = useState("Not yet Connected");
     const getAccount = async () => {
@@ -96,7 +96,7 @@ const CustomLogin = () => {
                 <div className="col-xs-12 col-sm-3"></div>
                 <div className="col-xs-12 col-sm-6">
                     <div className="bg-info text-center p-3 rounded-3">
-                        <input className="form-control mb-3" type="text" placeholder="Enter x-api-key" value={xApi} onChange={(e) => setXApi(e.target.value)}/>
+                        {/* <input className="form-control mb-3" type="text" placeholder="Enter x-api-key" value={xApi} onChange={(e) => setXApi(e.target.value)}/> */}
                         <select
                             name="network"
                             className="form-control form-select mb-3"

@@ -134,7 +134,7 @@ const Create = () => {
               (e.target.value === 'mtmsk') ? mtmskConnect() : solanaConnect();
             }}>
               <option value="none">Connect</option>
-              <option value="mtmsk">Metamask</option>
+              {/* <option value="mtmsk">Metamask</option> */}
               <option value="phntm">Phantom</option>
             </select>
           </div>
@@ -178,7 +178,7 @@ const Create = () => {
                 <tr>
                   <td>
                     <h5 className="py-4 text-danger">
-                      Network <span>(network: string)</span><br></br>
+                      Network <br></br>
                       <small>Solana blockchain environment (testnet/devnet/mainnet-beta)</small>
                     </h5>
 
@@ -198,7 +198,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Private Key (private_key:string)<br />
+                    Private Key<br />
                     <small>Your wallet's private key (string)</small>
                   </td>
                   <td className="px-5">
@@ -206,7 +206,7 @@ const Create = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-4 ps-2 text-danger">Name (name:string)<br />
+                  <td className="py-4 ps-2 text-danger">Name<br />
                   <small>Your NFT Name (string)</small>
                   </td>
                   <td className="px-5">
@@ -215,7 +215,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Symbol (symbol:string)<br />
+                    Symbol<br />
                     <small>Your NFT Symbol (string)</small>
                   </td>
                   <td className="px-5">
@@ -224,7 +224,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Description (description:string)<br />
+                    Description <br />
                     <small>Your NFT Symbol (string)</small>
                   </td>
                   <td className="px-5 py-3">
@@ -233,7 +233,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Attributes (attributes:string)<br />
+                    Attributes <br />
                     <small>attributes associated to this NFT. (Should have 'trait_type' and 'value')</small>
                   </td>
                   <td className="px-5 py-3">
@@ -242,7 +242,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2">
-                    External Url (external_url:string)<br />
+                    External Url <br />
                     <small>any url to associate with the NFT</small>
                   </td>
                   <td className="px-5">
@@ -251,7 +251,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Max Supply (max_supply:number)<br />
+                    Max Supply <br />
                     <small>Maximum number of clones/edition mints possible for this NFT</small>
                   </td>
                   <td className="px-5">
@@ -260,7 +260,7 @@ const Create = () => {
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
-                    Royalty (royalty:number(0-100))<br />
+                    Royalty <br />
                     <small>represents how much percentage of secondary<br/>
                      sales does the original creator gets. Ranges from (0-100),<br/> 
                     0 being original creator gets nothing and 100 being original<br/> 

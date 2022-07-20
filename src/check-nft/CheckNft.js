@@ -4,7 +4,7 @@ import axios from "axios";
 const CheckNft = () => {
   const [network, setNetwork] = useState("devnet");
   const [token, setToken] = useState();
-  const [xApi, setXApi] = useState();
+  const [xApi, setXApi] = useState('6YYVFYSK7PlguTsB');
 
   const [loaded, setLoaded] = useState(false);
   const [returns, setReturns] = useState({
@@ -72,13 +72,13 @@ const CheckNft = () => {
               value={token}
               onChange={(e) => setToken(e.target.value)}
             />
-            <input
+            {/* <input
               type="text"
               className="form-control mb-3"
               placeholder="Enter X-api-key"
               value={xApi}
               onChange={(e) => setXApi(e.target.value)}
-            />
+            /> */}
             <button className="btn btn-success" onClick={checkNow}>
               Check Now
             </button>
