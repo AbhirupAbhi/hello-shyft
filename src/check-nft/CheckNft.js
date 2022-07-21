@@ -56,7 +56,7 @@ const CheckNft = () => {
       <div className="container p-5">
         <div className="form-container p-5">
           <form>
-            <select
+            {/* <select
               name="network"
               className="form-control mb-3"
               onChange={(e) => setNetwork(e.target.value)}
@@ -64,7 +64,8 @@ const CheckNft = () => {
               <option value="devnet">Devnet</option>
               <option value="testnet">Testnet</option>
               <option value="mainnet-beta">Mainnet Beta</option>
-            </select>
+            </select> */}
+            
             <input
               type="text"
               className="form-control mb-3"

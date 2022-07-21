@@ -97,7 +97,7 @@ const CustomLogin = () => {
                 <div className="col-xs-12 col-sm-6">
                     <div className="bg-info text-center p-3 rounded-3">
                         {/* <input className="form-control mb-3" type="text" placeholder="Enter x-api-key" value={xApi} onChange={(e) => setXApi(e.target.value)}/> */}
-                        <select
+                        {/* <select
                             name="network"
                             className="form-control form-select mb-3"
                             id=""
@@ -106,7 +106,7 @@ const CustomLogin = () => {
                             <option value="devnet">Devnet</option>
                             <option value="testnet">Testnet</option>
                             <option value="mainnet-beta">Mainnet Beta</option>
-                        </select>
+                        </select> */}
                         <button className="btn btn-danger w-50" onClick={getAccount}>Connect & Verify</button>
                     </div>
                 </div>

@@ -157,9 +157,8 @@ const ListAll = () => {
         </div>
       </div>
       {connStatus && (<div className="container-lg">
-        <div className="card w-25 mx-auto p-3 my-3">
-          <h6>{wallID}</h6>
-          <button className="btn btn-danger w-75 mx-auto" onClick={clearData}>Disconnect Wallet</button>
+        <div className="w-25 ms-auto py-3 my-3">
+          <button className="btn btn-danger w-100 mx-auto" onClick={clearData}>Disconnect Wallet</button>
         </div>
       </div>)}
       <div className="container-lg">
@@ -191,7 +190,7 @@ const ListAll = () => {
                     onChange={(e) => setXkey(e.target.value)}
                   /> */}
                 </div>
-                <div className="col-12 col-sm-3">
+                {/* <div className="col-12 col-sm-3">
                   <select
                     name="network"
                     className="form-control form-select"
@@ -202,8 +201,9 @@ const ListAll = () => {
                     <option value="testnet">Testnet</option>
                     <option value="mainnet-beta">Mainnet Beta</option>
                   </select>
-                </div>
+                </div> */}
                 <div className="col-12 col-sm-3">
+                  <div className="text-info text-center my-3">network: devnet</div>
                   <input
                     type="text"
                     className="form-control"
@@ -240,7 +240,7 @@ const ListAll = () => {
             {isLoaded &&
               dataFetched.result.map((item) => (
                 <div className="col-xs-12 col-sm-3 p-1">
-                  <div className="card nft-card">
+                  <div className="card nft-card px-3">
                     <div className="card-body">
                       <a href={`/get-details?token_address=${item.mint}&apiKey=${xKey}`}>
                         <h5>{item.name}</h5>

@@ -14,11 +14,11 @@ const LandingPage = () => {
         </p>
         <button className="btn btn-info p-3 mb-5">SHYFT API Docs</button>
       </div>
-      <div className="container py-5">
-        
+      <div className="container pt-5">
+        <h2 className="text-center text-secondary pb-4">Non-Fungible Tokens</h2>
         <div className="d-flex justify-content-center">
           <div className="p-4">
-            <div className="card" style={{ width: "300px" }}>
+            <div className="card" style={{ width: "270px" }}>
               <div className="card-body">
                 <h4 className="card-title">Mint a new NFT</h4>
                 <p className="card-text" style={{ height: "70px" }}>
@@ -32,9 +32,9 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="p-4">
-            <div className="card" style={{ width: "300px" }}>
+            <div className="card" style={{ width: "270px" }}>
               <div className="card-body">
-                <h4 className="card-title">List All Your NFTs</h4>
+                <h4 className="card-title">NFTs from a wallet</h4>
                 <p className="card-text" style={{ height: "70px" }}>
                   Sample Project which illustrates the fetch all api, which
                   lists all the NFTs from the users wallet.
@@ -46,7 +46,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="p-4">
-            <div className="card" style={{ width: "300px" }}>
+            <div className="card" style={{ width: "270px" }}>
               <div className="card-body">
                 <h4 className="card-title">Login Using NFTs</h4>
                 <p className="card-text" style={{ height: "70px" }}>
@@ -60,10 +60,10 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="p-4">
-            <div className="card" style={{ width: "300px" }}>
+            <div className="card" style={{ width: "270px" }}>
               <div className="card-body">
                 <h4 className="card-title">
-                  Get Details of one particular Nft
+                  Details of an NFT
                 </h4>
                 <p className="card-text" style={{ height: "70px" }}>
                   Sample Project which illustrates our read api, and fetches all
@@ -76,7 +76,40 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+        <hr />
       </div>
+      <div className="container pt-5">
+        <h2 className="text-center text-secondary pb-4">Fungible Tokens</h2>
+        <div className="d-flex justify-content-center">
+          <div className="p-4">
+            <div className="card" style={{ width: "270px" }}>
+              <div className="card-body">
+                <h4 className="card-title">Create A New Token</h4>
+                <p className="card-text" style={{ height: "70px" }}>
+                   A Sample Project which illustrates how the we can create our own fungible tokens using SHYFT APIs
+                </p>
+                <Link to="/create-token" className="btn btn-primary">
+                  View Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="p-4">
+            <div className="card" style={{ width: "270px" }}>
+              <div className="card-body">
+                <h4 className="card-title">Airdrop Tokens</h4>
+                <p className="card-text" style={{ height: "70px" }}>
+                  A Sample project which lets us send created fungible tokens using SHYFT APIs
+                </p>
+                <Link to="/mint-token" className="btn btn-primary">
+                  View Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 };

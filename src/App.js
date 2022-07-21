@@ -9,7 +9,8 @@ import SamplePage from "./login-with-nft/SamplePage";
 import Create from "./create-nft/Create";
 import CheckNft from "./check-nft/CheckNft";
 import LandingPage from "./LandingPage";
-
+import CreateToken from "./create-tokens/CreateToken";
+import MintToken from "./mint-tokens/MintToken";
 
 function App() {
   ReactSession.setStoreType("localStorage");
@@ -24,6 +25,8 @@ function App() {
           <Route exact path="/sample-page" element={<SamplePage />} />
           <Route exact path="/create-new" element={<Create />} />
           <Route exact path="/check" element={<CheckNft />} />
+          <Route exact path="/create-token" element={<CreateToken />} />
+          <Route exact path="/mint-token" element={<MintToken />} />
         </Routes>
       </Router>
     </div>

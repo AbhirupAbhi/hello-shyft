@@ -185,7 +185,7 @@ const Create = () => {
                     </h5>
 
                   </td>
-                  <td className="px-5">
+                  {/* <td className="px-5">
                     <select
                       name="network"
                       className="form-control"
@@ -196,7 +196,8 @@ const Create = () => {
                       <option value="mainnet-beta">Mainnet Beta</option>
                     </select>
                     
-                  </td>
+                  </td> */}
+                  <td className="px-5 text-info">Devnet</td>
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
