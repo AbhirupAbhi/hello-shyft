@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { LAMPORTS_PER_SOL, clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
+import { ReactSession } from 'react-client-session';
 // import useReadAllApi from "./hello-shyft-collection/Read_All";
 // import Navbar from "./Navbar";
 
@@ -17,6 +18,36 @@ const ListAll = () => {
   const [dataFetched, setDataFetched] = useState();
 
   const [connStatus,setConnStatus] = useState(false);
+  
+  useEffect(
+    () => {
+      console.log('use effect ran');
+      try
+      {
+        let uwallet = ReactSession.get("userw");
+        let dataPer = ReactSession.get("dataGot");
+        console.log(uwallet);
+        if(uwallet != null && dataPer != null)
+        {
+          setWallID(uwallet);
+          setConnStatus(true);
+          setDataFetched(dataPer);
+          setLoaded(true);
+        }
+      }
+      catch
+      {
+        setConnStatus(false);
+      }
+    },[]
+  );
+  const clearData = () => {
+    ReactSession.set("userw", null);
+    ReactSession.set("cstat", null);
+    ReactSession.set("dataGot",null);
+    setLoaded(false);
+    setConnStatus(false);
+  };
 
   const mtmskConnect = async () => {
     console.log('clicked meta mask');
@@ -33,6 +64,7 @@ const ListAll = () => {
             console.log(accounts);
             setWallID(accounts[0]);
             setConnStatus(true);
+            
             //setCurrentAccount(accounts);
         }
         catch(err)
@@ -40,6 +72,7 @@ const ListAll = () => {
             console.log(err);
         }
   }
+  
 
   const solanaConnect = async () => {
     console.log('clicked solana connect');
@@ -63,6 +96,9 @@ const ListAll = () => {
             {
                 console.log(wallet.address);
                 setWallID(wallet.address);
+                ReactSession.set("userw", wallet.address);
+                ReactSession.set("cstat",true);
+                
                 
                 // ReactSession.set("userw", wallet.address);
                 const accountInfo = await connection.getAccountInfo(new PublicKey(wallet.address),"confirmed");
@@ -99,6 +135,7 @@ const ListAll = () => {
       .then((res) => {
         console.log(res.data);
         setDataFetched(res.data);
+        ReactSession.set("dataGot",res.data);
         setLoaded(true);
       })
 
@@ -119,6 +156,12 @@ const ListAll = () => {
           </p>
         </div>
       </div>
+      {connStatus && (<div className="container-lg">
+        <div className="card w-25 mx-auto p-3 my-3">
+          <h6>{wallID}</h6>
+          <button className="btn btn-danger w-75 mx-auto" onClick={clearData}>Disconnect Wallet</button>
+        </div>
+      </div>)}
       <div className="container-lg">
       {!connStatus && (<div className="card border border-primary rounded py-3 px-5">
           <div className="card-body text-center">

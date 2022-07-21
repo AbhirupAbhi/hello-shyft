@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import {ReactSession} from 'react-client-session';
 // import Navbar from "./Navbar";
 
 const GetDetails = () => {
+  const val = ReactSession.get("userw");
+  console.log("Value in session: "+val);
   const [apiResponse, setApiResponse] = useState();
   const [name, setName] = useState("Loading");
   const [desc, setDesc] = useState("");

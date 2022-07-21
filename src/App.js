@@ -1,4 +1,5 @@
 import {  BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ReactSession } from "react-client-session";
 // import 'bootstrap/dist/css/bootstrap.css';
 import './resources/css/custom.css';
 import ListAll from "./list-all-nft/ListAll";
@@ -11,6 +12,7 @@ import LandingPage from "./LandingPage";
 
 
 function App() {
+  ReactSession.setStoreType("localStorage");
   return (
     <div className="App">
       <Router>

@@ -3,9 +3,11 @@ import axios from "axios";
 import { LAMPORTS_PER_SOL, clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 
+import disPic from '../resources/images/upload-file.jpg';
+
 const Create = () => {
   const [file, setfile] = useState();
-  const [displayPic, setDisplayPic] = useState();
+  const [displayPic, setDisplayPic] = useState(disPic);
   const [network, setnetwork] = useState("devnet");
   const [privKey, setprivKey] = useState();
   const [xApiKey, setXAPI] = useState('6YYVFYSK7PlguTsB');
@@ -202,7 +204,7 @@ const Create = () => {
                     <small>Your wallet's private key (string)</small>
                   </td>
                   <td className="px-5">
-                    <input type="text" className="form-control" value={privKey} onChange={(e)=>setprivKey(e.target.value)} required />
+                    <input type="text" className="form-control" placeholder="Enter Your Wallet's Private Key" value={privKey} onChange={(e)=>setprivKey(e.target.value)} required />
                   </td>
                 </tr>
                 <tr>
@@ -210,7 +212,7 @@ const Create = () => {
                   <small>Your NFT Name (string)</small>
                   </td>
                   <td className="px-5">
-                    <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} required />
+                    <input type="text" className="form-control" placeholder="Enter NFT Name" value={name} onChange={(e)=>setName(e.target.value)} required />
                   </td>
                 </tr>
                 <tr>
@@ -219,16 +221,16 @@ const Create = () => {
                     <small>Your NFT Symbol (string)</small>
                   </td>
                   <td className="px-5">
-                    <input type="text" className="form-control" value={symbol} onChange={(e)=>setSymbol(e.target.value)} required />
+                    <input type="text" className="form-control" placeholder="symbol" value={symbol} onChange={(e)=>setSymbol(e.target.value)} required />
                   </td>
                 </tr>
                 <tr>
                   <td className="py-4 ps-2 text-danger">
                     Description <br />
-                    <small>Your NFT Symbol (string)</small>
+                    <small>Add a small story to this NFT (string)</small>
                   </td>
                   <td className="px-5 py-3">
-                    <textarea className="form-control" value={desc} onChange={(e)=>setDesc(e.target.value)} required></textarea>
+                    <textarea className="form-control" placeholder="Enter Description" value={desc} onChange={(e)=>setDesc(e.target.value)} required></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -237,7 +239,7 @@ const Create = () => {
                     <small>attributes associated to this NFT. (Should have 'trait_type' and 'value')</small>
                   </td>
                   <td className="px-5 py-3">
-                    <textarea className="form-control" value={attr} onChange={(e)=>setAttr(e.target.value)} required></textarea>
+                    <textarea className="form-control" placeholder="Enter Attributes" value={attr} onChange={(e)=>setAttr(e.target.value)} required></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -246,7 +248,7 @@ const Create = () => {
                     <small>any url to associate with the NFT</small>
                   </td>
                   <td className="px-5">
-                    <input type="text" className="form-control" value={extUrl} onChange={(e)=>setExtUrl(e.target.value)} required />
+                    <input type="text" className="form-control" placeholder="Enter Url if Any" value={extUrl} onChange={(e)=>setExtUrl(e.target.value)} />
                   </td>
                 </tr>
                 <tr>
